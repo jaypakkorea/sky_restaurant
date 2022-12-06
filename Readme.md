@@ -6,7 +6,25 @@
 
 * `python -m venv venv`
 * `source venv/Scripts/activate`
+* `pip install -r requirements.txt`
 * `python manage.py runserver`
+
+
+
+
+
+
+
+### API
+
+| HTTP verb | URL                                        | 설명             |
+| --------- | ------------------------------------------ | ---------------- |
+| GET       | localhost/buk2on_on/                       | 대문페이지       |
+| GET       | localhost/buk2on_on/seoul/                 | 서울 지역 조회   |
+| GET       | localhost/buk2on_on/busan/                 | 부산지역 조회    |
+| GET       | localhost/buk2on_on/etc/                   | 기타 지역 조회   |
+| POST      | localhost/buk2on_on/create/                | 맛집 추천        |
+| GET       | localhost/buk2on_on/`<int:restaurant_pk>`/ | 맛집 상세 페이지 |
 
 
 
@@ -23,21 +41,6 @@
 CSS, JS, 프로필 및 고정 이미지 저장 폴더 : **static**
 
 맛집 사진, 프로필 사진 저장 폴더 : **media**
-
-
-
-
-
-### API
-
-| HTTP verb | URL                                        | 설명             |
-| --------- | ------------------------------------------ | ---------------- |
-| GET       | localhost/buk2on_on/                       | 대문페이지       |
-| GET       | localhost/buk2on_on/seoul/                 | 서울 지역 조회   |
-| GET       | localhost/buk2on_on/busan/                 | 부산지역 조회    |
-| GET       | localhost/buk2on_on/etc/                   | 기타 지역 조회   |
-| POST      | localhost/buk2on_on/create/                | 맛집 추천        |
-| GET       | localhost/buk2on_on/`<int:restaurant_pk>`/ | 맛집 상세 페이지 |
 
 
 

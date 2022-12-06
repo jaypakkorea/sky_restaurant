@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div style="margin:12rem;"></div>
+
+<div class="container">
+    <div style="display:flex; flex-direction:row; justify-content:space-between; " >
+        <h1 class='section_title'>
+            S E O U L 
+        </h1>
+        <a id="create"   href="{% url 'buk2on_on:create' %}" >+</a>
+    </div>
+
+
+    <div style ="display:flex; flex-direction:column-reverse; flex-wrap:no-wrap;">
+        <div class="a_hover" style ="display:flex; gap: 20px 2%; flex:1 1 auto; flex-direction:row; flex-wrap:wrap; justify-content:flex-start; align-itmes:stretch; ">    
+            {% for recommend  in recommends %}
+            
+            <div style="flex-grow:1; margin-bottom:28px;"> 
+
+                {% comment %} 모달 {% endcomment %}
+                {% comment %} <div id="modal_detail_feed" class="modal_overlay">
+                    <div class="modal_window">
+                        <div class="modal_title">
+                            <div class="modal_title_side"></div>
+                            <h3 style="font-family: Gowun Batang; font-weight:bold;"> {{recommend.name}} </h3>
+                            <div class="modal_title_side">
+                                <span id="close_modal" class="material-icons-outlined">
+                                    <div > 
+                                        <span class="close">&times;</span>  
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="modal_image" style="display: flex; flex-direction:row" >
+                            <div>
+                                <div style="overflow:hidden; margin:0 auto; background-position: center; background-size:cover; width : 350px;">
+                                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-inner">
+                                          <div class="carousel-item active">
+                                            <img src="{{recommend.mainImage.url}}" class="d-block" style="left:10px; width:350px; height: 520px " alt="...">
+                                          </div>
+                                          {% for img in recommend.image.all %}
+                                            <div class="carousel-item">
+                                                <img src="{{img.image.url}}"  class="d-block" style="left:10px; width:350px; height: 520px " alt="..." >
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                          <span class="visually-hidden">Next</span>
+                                        </button>
+                                      </div>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction:column;  align-items: flex-start; text-align : left; margin-left:20px; margin-right:20px;">
+                                <div style="margin:1rem;"></div>
+                                {% if recommend.user.profile_pic %}
+                                    <a href="{% url 'accounts:profile' recommend.user %}">
+                                        {% if recommend.user.profile_pic %}
+                                        <img src="{{recommend.user.profile_pic.url}}" alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem;">
+                                        <span style=" text-decoration:none; color:gray; font-size:2rem; height:50%;">{{recommend.user}}</span>
+                                        {% else %}
+                                        <img src="{% static 'default_avatar2.jpg' %}" alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem;">
+                                        <span style=" text-decoration:none; color:gray; font-size:2rem; height:50%;">{{recommend.user}}</span>
+                                        {% endif %}
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'accounts:profile' recommend.user %}" style="text-decoration:none; display:flex; flex-direction : row; align-items : center;" >
+                                        <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="45" height="45" style="border-radius : 70%; overflow:hidden; margin-right:1rem; ">
+                                        <span class="detail_modal_recommend_user"  >{{recommend.user|upper}}</span>
+                                    </a>
+                                {% endif %}
+                                <div style="margin:2rem;"></div>
+                                {% if recommend.stars == 3 %}
+                                    <p style = "margin-bottom:2rem;">★★★</p>
+                                {% elif recommend.stars == 2 %}
+                                    <p>★★</p>
+                                {% elif recommend.stars == 1 %}
+                                    <p>★</p>
+                                {% elif recommend.stars == 0 %}
+                                    <p>none</p>
+                                {% endif %} 
+                                <p class="detail_modal_text">{{recommend.adress}}</p>
+                                <p class="detail_modal_text">{{recommend.bestMenu}}</p>
+                                <p class="detail_modal_text">{{recommend.reason}}</p>
+                                <div id="map" style="width:400px;height:100%;"></div>
+
+                                {% comment %} <p class="detail_modal_text">{{recommend.comments}}</p> {% endcomment %}
+                            {% comment %} </div>
+                        </div>
+                    </div>
+                </div>  {% endcomment %}
+
+                {% comment %} 대문카드 {% endcomment %}
+                <div style= "width: 320px; height520px;">
+                    <a href="{% url 'buk2on_on:detail' recommend.pk %}"  style="width: 320px; height : 480px; overflow:hidden; margin:0 auto; background-position: center; background-size:cover;">
+                        <img id="detail_feed"  src="{{recommend.mainImage.url}}"  alt="{% static 'main_color.jpg' %}" style= "left:-50%; height:480px; width: 320px;" >
+                    </a>
+                    <div id="detail_feed_text">
+                        <p id="detail_feed_text">{{recommend.name}}
+                        {% if recommend.stars == 3 %}
+                            <span>★★★</span>
+                        {% elif recommend.stars == 2 %}
+                            <span>★★</span>
+                        {% elif recommend.stars == 1 %}
+                            <span>★</span>
+                        {% elif recommend.stars == 0 %}
+                            <span>none</span>
+                        {% endif %} 
+                        </p>
+                    </div>
+                </div>
+        
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+</div>
+<div style="margin:12rem;"></div>
+{% endblock content %}
+
+{% block script %}
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9bac6e7feb18a7bcee880724d8e51ff4&libraries=services"></script>
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = {
+            center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+        };  
+    
+    // 지도를 생성합니다    
+    var map = new kakao.maps.Map(mapContainer, mapOption); 
+    
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+    
+    
+    // 주소로 좌표를 검색합니다
+    geocoder.addressSearch('창원시 의창구 중동로 34', function(result, status) {
+    
+        // 정상적으로 검색이 완료됐으면 
+         if (status === kakao.maps.services.Status.OK) {
+    
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+    
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+    
+            // 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0; background-corlor:black;">hi</div>'
+            });
+            infowindow.open(map, marker);
+    
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords);
+        } 
+    });    
+    </script>
+    
+{% endblock script %}

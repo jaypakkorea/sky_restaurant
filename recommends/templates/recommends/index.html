@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div>
+    <img src=" {% static 'main_image.jpg' %} " alt="no image"  class='background_main_image'>
+</div> 
+
+<section >
+    <h3 class="whoweare" style="font-size:4rem;" > Recommendations 
+        <p style="margin:0.1rem;"></p>
+        <span style="font-size:1.2rem;">8th_SSAFY_BUK_2 members made</span></h3>
+</section>
+
+<div style="margin:10rem;"></div>
+
+<div class="info_bottom">
+    <div class="green_box">
+        <p class="guide_symbols" >BUK2 on&on Guide's 
+            <br> Symbols mean</br>
+        </p>
+    </div>
+    
+
+    <div class="guide_text">
+            ★★★ &nbsp _&nbsp&nbsp&nbsp맛을 보기 위해 여행을 떠날만한 식당
+            <br>★★ &nbsp&nbsp&nbsp&nbsp _&nbsp&nbsp&nbsp멀리서 찾아갈 만한 식당 
+            <br>★ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp _&nbsp&nbsp&nbsp요리가 훌륭한 식당
+            <br>none &nbsp&nbsp&nbsp _&nbsp&nbsp&nbsp합리적인 가격을 가진 식당
+    </div>
+
+</div>
+
+
+<div style="margin:5rem;"></div>
+
+<div class="info_bottom">
+    <div class="green_box" style="display:hidden; background-color: black; ">
+        <p style="  font-size: 3rem; 
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        z-index: 4;
+        color : greenyellow;
+        font-style: italic;
+        text-align: right;
+        margin-right: 50px;
+        margin-top: 85px"> 
+        Policy </p>
+    </div>
+
+    <div class="guide_text" style="text-align:left;">
+        <p>1. 사진 업로드는 필수입니다.</p>
+        <p>2. 10곳 이상 추천하면
+            <span>
+                뱃지 (<i class="fa-sharp fa-solid fa-certificate" style="color:skyblue;"></i>) 
+                가 수여됩니다.
+            </span>
+        </p>
+    </div>
+</div>
+
+</div>
+
+
+<div style="margin:5rem;"></div>
+
+{% comment %} {% for recommend in recommends %}
+    <div>
+        <br>
+        <br>
+        <p>{{recommend.pk}}</p>
+        <div class="a_hover">
+            <a href="{% url 'buk2on_on:detail' recommend.pk %}" style=" color:white; font-size:2rem; text-decoration: none;"> {{ recommend.name }}</a>
+        </div>
+        <div>
+            <a href="{% url 'buk2on_on:detail' recommend.pk %}" style=" color:white; font-size:1.2rem; text-decoration: none;"> {{ recommend.region }}</a>
+        </div>
+        <hr>
+    </div>
+{% endfor %} {% endcomment %}
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+
+</script>
+    
+{% endblock script %}

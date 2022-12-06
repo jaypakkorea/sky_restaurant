@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+
+
+    <div style="margin:12rem;"></div>
+    <h1 class="detail_title">{{recommend.name}}</h1>
+    <p>
+        {% if recommend.user.profile_pic %}
+            <a href="{% url 'accounts:profile' recommend.user %}" style="text-decoration: none;">
+                <img src="{{recommend.user.profile_pic.url}}" alt="no image"  width="30" height="30" style="text-decoration: none; border-radius : 70%; overflow:hidden; margin-right:1rem;">
+                <span style="text-decoration: none; color:gray;">{{recommend.user|upper}}</span>
+            </a>
+        {% else %}
+            <a href="{% url 'accounts:profile' recommend.user %}" style="text-decoration: none;">
+                <img src=" {% static 'default_avatar2.jpg' %} " alt="no image"  width="30" height="30" style="text-decoration: none; border-radius : 70%; overflow:hidden; margin-right:1rem; ">
+                <span style="text-decoration: none; color:gray;">{{recommend.user|upper}}</span>
+            </a>
+        {% endif %}
+    </p>
+    <hr>
+    <div style= "margin-bottom:2rem"></div>
+
+
+      
+    <div style="display: flex; flex-direction:row">
+        <div style="width: 30%;">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" style="border:1px solid black; background-color:greenyellow; width:320px; height: 480px;">
+                    <div class="carousel-item active">
+                        <img src="{{recommend.mainImage.url}}" class="d-block" style="left:10px; width:350px; height: 520px; overflow:hidden" alt="...">
+                      </div>
+                      {% for img in recommend.image.all %}
+                            <div class="carousel-item" style="width:350px; height: 520px; overflow:hidden ">
+                                <img src="{{img.image.url}}"  class="d-block" style="max-width:initial " alt="..." >
+                            </div>
+                        {% endfor %}
+                    
+    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div> 
+        </div>
+
+        <br>
+        <div style="margin-left:3rem;">
+            <form action="{% url 'buk2on_on:comments_create' recommend.pk %}" method="POST">
+                {% csrf_token %}
+                {{comment_form}}
+                <input type="submit" value="share">
+            </form>
+            <ul style="margin-top:2rem">
+                {% for comment in comments  %}
+                    <li style="margin-top:1rem;">{{comment.content}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <br>
+    {% comment %} <form action= "{% url 'buk2on_on:update' recommend.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="EDIT">
+    </form>  {% endcomment %}
+
+    {% if user == recommend.user %}
+        <hr>
+            <form action= "{% url 'buk2on_on:delete' recommend.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="DELETE" class="btn btn-danger">
+            </form>
+        <hr>
+    {% endif %}
+
+</div>
+
+{% endblock content %}

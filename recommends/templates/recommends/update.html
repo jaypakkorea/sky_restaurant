@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div style="margin:12rem;"></div>
+
+<div class="container">
+    <h1 class='section_title'>Update</h1>
+    
+    <form id="post_form" action="{% url 'buk2on_on:create' %}" method="POST"  enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        {% for field in restaurant_form %}
+            <div style="margin-bottom: 1.5rem; margin-left: 1rem;">
+            {{ field.label_tag }} 
+            <div style="margin-top: 0.2rem;">
+            {{ field }} 
+            {% comment %} <span>{{ field.errors }} </span> {% endcomment %}
+            </div>
+            </div>
+        {% endfor %}
+
+        {{formset.as_p}}
+        {{ formset.management_form }}
+{% comment %} 
+        {% for form in formset %}
+            <div style=" margin-left: 1rem;">
+            <br>{{ form }} {{ form.errors }} </div>
+        {% endfor %} {% endcomment %}
+
+        <div style="margin:8rem;"></div>
+
+        <input type="submit" value="SUBMIT" class="btn btn-link">
+    <hr>
+</div>
+  
+{% endblock content %}
+

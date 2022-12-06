@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="margin:12rem;">
+
+  <div class="container">
+    <h1 class='section_title'>Create Account</h1>
+    {% if error_message %}<p stlye='color:red;'><strong>{{ error_message }}</strong></p>{% endif %}
+    <div style="margin:2rem;">
+
+    <form action= "{% url 'accounts:signup' %}" method="POST" enctype ="multipart/form-data">
+      {% csrf_token %}
+      {% comment %} {{ signup_form.as_p }} {% endcomment %}
+      {% for field in signup_form %}
+        <div style="margin-bottom: 1.5rem; margin-left: 1rem;">
+        {{ field.label_tag }} 
+        <div style="margin-top: 0.2rem;">
+        {{ field }} <span>{{ field.errors }} </span></div>
+        </div>
+      {% endfor %}
+      <div style="margin-left:1rem;">
+        <input type="submit" value='Sign Up'>
+      </div>
+    </form>
+</div>
+{% endblock content %}

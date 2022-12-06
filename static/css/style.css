@@ -1,0 +1,246 @@
+.container {
+  width:80%;
+}
+
+
+.a_hover a:hover {
+    /* background-color: greenyellow; */
+    color: greenyellow;
+  }
+  
+.background_main_image{
+  width : 100%; 
+  height : 100vh;
+  z-index : 0 ;
+  top: -10rem;
+}
+
+.main_nav {
+  z-index : 2 ;
+}
+
+.whoweare{
+  opacity: 0.7;
+  font-family: Georgia, 'Times New Roman', Times, serif; 
+  font-style: italic;
+  color :white;
+  position : absolute;
+  text-align: right;
+  top: 400px;
+  animation : slide 1.5s ease-out;
+  left : 4.3rem;
+}
+
+
+.info_bottom {
+  position : relative;
+  width : 100%;
+  height : 240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.green_box{
+  left : 0;
+  background-color: greenyellow;
+  border:1px solid none;
+  width:720px;
+  height:100%;
+  z-index: 3;
+  position: flex;
+}
+
+
+.guide_symbols {
+  font-size: 3rem; 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  z-index: 4;
+  color : black;
+  font-style: italic;
+  text-align: right;
+  margin-right: 50px;
+  margin-top: 50px;
+}
+
+.policy_symbols {
+  font-size: 3rem; 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  z-index: 4;
+  color : greenyellow;
+  font-style: italic;
+  text-align: right;
+  margin-right: 50px;
+  margin-top: 50%;
+}
+
+.guide_text {
+  top: 0;
+  position: relative;
+  font-size: 1.2rem; 
+  left : 6rem;
+  font-family: Gowun Batang, serif;
+  margin-top: 20px;
+  line-height:180%; 
+}
+
+
+footer {
+  z-index : 3 ;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  bottom: 2rem;
+  font-size: 0.5rem;
+}
+
+
+.detail_title{
+  top: 0;
+  position: relative;
+  font-size: 4rem; 
+  font-family: Gowun Batang, serif;
+  margin-top: 20px;
+  line-height:180%; 
+  font-weight: bolder;
+
+}
+
+.section_title{
+  color: black;
+  margin-bottom: 5rem;
+  font-family: 'Playfair Display', serif;  
+  background-color: greenyellow;
+  font-weight : bold;
+  padding-top : 10px;
+  padding-bottom : 10px;
+
+  
+}
+
+@keyframes slide{
+  from{
+      left: -100px;
+      opacity: 0;
+  }
+  to {
+      left : 4.3rem;
+      opacity: 0.7;
+  }
+}
+
+@keyframes disappear {
+  from{
+      left :  4.3rem;
+      opacity: 0.7;
+  }
+  to {
+      left: -100px;
+      opacity: 0;
+  }
+}
+
+
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+.modal_window {
+  background: white;
+  color: black;
+  backdrop-filter: blur(13.5px);
+  -webkit-backdrop-filter: blur(13.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  width: 800px;
+  height: 600px;
+  position: relative;
+  padding: 10px;
+}
+
+.modal_title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.modal_title_side{
+  flex: 0 0 40px;
+  text-align: center;
+}
+
+.modal_image{
+  outline: 2px none darkgray ;
+  text-align: center;
+  transition: all .15s ease-in-out;
+  margin-top:10px;
+  width:780px;
+  height: 520px;
+}
+
+.detail_modal_text {
+  margin-bottom : 1.3rem;
+  font-size:1rem; 
+  font-family: Gowun Batang; 
+  font-weight:bold;
+}
+
+.detail_modal_recommend_user {
+  color:gray; 
+  font-size:2rem;
+  font-family: Georgia, 'Times New Roman', Times, serif; 
+}
+
+#detail_feed_text {
+  font-family: Gowun Batang, serif;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#create_recommend{
+  background: none; 
+  border:none;  
+  display:flex;
+}
+
+#create {
+  text-decoration: none;
+  color: greenyellow;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+#create:hover,
+#create:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+

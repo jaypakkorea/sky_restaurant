@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div style="margin:12rem;">
+
+  <div class="container">
+    <h1 class='section_title'>UPDATE</h1>
+    <h3>ID : {{request.user.username}}</h3>
+    <div style="margin:2rem;">
+    <form action= "{% url 'accounts:update' %}" method="POST" enctype ="multipart/form-data">
+      {% csrf_token %}
+      {% for field in form %}
+        <div style="margin-bottom: 1.5rem; margin-left: 1rem;">
+        {{ field.label_tag }} 
+        <div style="margin-top: 0.2rem;">
+        {{ field }} <span>{{ field.errors }} </span></div>
+        </div>
+      {% endfor %}
+      
+      <div style="margin-left:1rem;">
+        <input type="submit">
+        <div style="margin-top:1rem;">
+          <button type="button" name="change_password" onClick="location.href='{% url 'accounts:change_password'%}'">password change</button>
+        </div>
+      </div>
+    </form>
+</div>
+{% endblock content %}

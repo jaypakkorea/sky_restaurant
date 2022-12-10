@@ -67,12 +67,14 @@
     </div>
 
     <br>
-    {% comment %} <form action= "{% url 'buk2on_on:update' recommend.pk %}" method="POST">
-        {% csrf_token %}
-        <input type="submit" value="EDIT">
-    </form>  {% endcomment %}
+
 
     {% if user == recommend.user %}
+        <hr>
+        <form action= "{% url 'buk2on_on:update' recommend.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-outline-secondary" value="EDIT">
+        </form>  
         <hr>
             <form action= "{% url 'buk2on_on:delete' recommend.pk %}" method="POST">
                 {% csrf_token %}

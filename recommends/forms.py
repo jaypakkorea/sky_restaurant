@@ -78,6 +78,80 @@ class RestaurantForm(forms.ModelForm):
         exclude = ['user',]
 
 
+class EditRestaurantForm(forms.ModelForm):
+
+    name = forms.CharField(
+    label='Name',
+    widget=forms.TextInput(
+        attrs={
+            'placeholder': 'name',
+            'maxlength': 20,
+            'size': 40,
+            }
+        )
+    )
+
+
+    adress = forms.CharField(
+        label='Adress',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder': 'adress',
+                'maxlength': 50,
+                'size': 40,
+                }
+            ),
+        )
+
+
+    stars = forms.IntegerField(
+    label='Stars',
+    widget=forms.NumberInput(
+        attrs={
+            'placeholder': '-',
+            'min': 0,
+            'max' : 3,
+            }
+        )
+    )
+
+    bestMenu = forms.CharField(
+    label='Best Menu',
+    widget=forms.TextInput(
+        attrs={
+            'placeholder': 'Best Menu',
+            'maxlength': 100,
+            'size': 40,
+            }
+        )
+    )
+
+    reason = forms.CharField(
+    label='Comment',
+    widget=forms.Textarea(
+        attrs={
+            'placeholder': 'Reason',
+            'maxlength': 200,
+            'rows' :4,
+            'cols' :42,
+            }
+        )
+    )
+
+    mainImage = forms.ImageField(
+    required = True,
+    label='Image',
+    widget=forms.ClearableFileInput(
+        ),
+    error_messages={
+        'required': '사진을 입력하세요.',
+    })
+
+    class Meta:
+        model = Restaurant
+        exclude = ['user', 'province', 'region', ]
+
+
 class CommentForm(forms.ModelForm):
     
     content = forms.CharField(

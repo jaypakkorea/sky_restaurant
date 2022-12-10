@@ -129,27 +129,21 @@ def update(request, restaurant_pk):
     restaurant = Restaurant.objects.get(pk=restaurant_pk)
 
     if request.method == 'POST':
-        restaurant_form = RestaurantForm(request.POST, request.FILES, instance=restaurant)
-        formset = ImageFormSet(request.POST, request.FILES)
-        if restaurant_form.is_valid() and formset.is_valid() :
+        restaurant_form = EditRestaurantForm(request.POST, request.FILES, instance=restaurant)
+
+        if restaurant_form.is_valid()  :
             restaurant_form.save()
-            for form in formset.cleaned_data:
-                if form:
-                    image = form['image']
-                    photo = Images(restaurant=restaurant_form, image=image)
-                    photo.save()
-                
             return redirect('buk2on_on:detail', restaurant.pk)
                 
 
         else:
-            print(restaurant_form.errors, formset.errors)
+            print(restaurant_form.errors)
 
     else:
-        restaurant_form = RestaurantForm()
-        formset = ImageFormSet(queryset=Images.objects.none())
+        restaurant_form = EditRestaurantForm(instance=restaurant)
+        
     context = {
             'restaurant_form' : restaurant_form,
-            'formset' : formset,
+            'restaurant' : restaurant,
         }
     return render(request, 'recommends/update.html', context)
